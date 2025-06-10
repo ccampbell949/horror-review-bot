@@ -1,0 +1,1 @@
+﻿print("👻 Horror Review Bot starting up...")
