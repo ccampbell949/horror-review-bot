@@ -49,3 +49,4 @@ class EmailClient:
             smtp.send_message(msg)
 
         print(f"📧 Email sent to {recipient}")
+        return True
