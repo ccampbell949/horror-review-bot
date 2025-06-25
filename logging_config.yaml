@@ -1,0 +1,32 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+  detailed:
+    format: "%(asctime)s | %(levelname)-8s | %(name)s | %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: detailed
+    stream: ext://sys.stdout
+
+  file:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/horror_review_bot.log
+    encoding: utf8
+    mode: a
+
+loggers:
+  horrorbot:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: no
+
+root:
+  level: WARNING
+  handlers: [console]

@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\content-to-post",
-    "\\content-to-post\\2025-06-11-10_Cloverfield_Lane"
+    "\\config",
+    "\\tmdb"
   ],
-  "SelectedNode": "\\main.py",
+  "SelectedNode": "\\horrorbot",
   "PreviewInSolutionExplorer": false
 }

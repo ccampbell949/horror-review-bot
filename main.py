@@ -4,7 +4,9 @@ from tmdb.client import TMDBClient
 from horrorbot.review.generator import ReviewGenerator
 from horrorbot.storage.saver import ContentSaver
 from horrorbot.emailer.client import EmailClient
-from horrorbot.logging_config import setup_loggin
+from horrorbot.logging_config import setup_logging
+
+setup_logging()
 
 class HorrorReviewBot:
     def __init__(self):
@@ -28,28 +30,32 @@ class HorrorReviewBot:
                 self.logger.debug(message)
 
     def run(self):
-        movie = self.tmdb.get_random_horror_movie()
-        if not movie:
-            self.log_and_print("❌ No movie found.", level="error")
-            return
+        try:
+            movie = self.tmdb.get_random_horror_movie()
+            if not movie:
+                self.log_and_print("❌ No movie found.", level="error")
+                return
 
-        self.log_and_print(f"🎬 {movie['title']}", level="info")
-        self.log_and_print(f"🖼️ Poster: {movie['poster_url']}", level="info")
+            self.log_and_print(f"🎬 {movie['title']}", level="info")
+            self.log_and_print(f"🖼️ Poster: {movie['poster_url']}", level="info")
 
-        overview = self.tmdb.get_movie_overview(movie['title'])
-        review = self.generator.generate(movie['title'], overview)
+            overview = self.tmdb.get_movie_overview(movie['title'])
+            review = self.generator.generate(movie['title'], overview)
 
-        self.log_and_print(f"\n📝 Review:\n{review}", level="info")
+            self.log_and_print(f"\n📝 Review:\n{review}", level="info")
 
 
-        _, image_path = self.saver.save(movie['title'], movie['poster_url'], review)
+            _, image_path = self.saver.save(movie['title'], movie['poster_url'], review)
 
-        subject = f"Horror Movie Review: {movie['title']}"
-        body = f"Title: {movie['title']}\nPoster: {movie['poster_url']}\n\nReview:\n{review}"
+            subject = f"Horror Movie Review: {movie['title']}"
+            body = f"Title: {movie['title']}\nPoster: {movie['poster_url']}\n\nReview:\n{review}"
 
-        self.emailer.send(subject, body, self.config.email_address, image_path)
-        self.log_and_print("Email sent successfully.", level="info")
-
+            self.emailer.send(subject, body, self.config.email_address, image_path)
+            self.log_and_print("Email sent successfully.", level="info")
+        
+        except Exception as e:
+            self.log_and_print(f"💥 Unhandled exception: {e}", level="error")
+            self.logger.exception("Detailed traceback:")
 
 if __name__ == "__main__":
     HorrorReviewBot().run()
