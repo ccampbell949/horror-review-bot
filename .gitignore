@@ -3,10 +3,20 @@
 ################################################################################
 
 /.vs/slnx.sqlite
+venv/
 
-# Ignore Python cache files and virtual environment
+# IDE
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Python
 __pycache__/
 *.pyc
-venv/
-.env
 
+# Local secrets & outputs
+.env
+logs/
+content-to-post/
