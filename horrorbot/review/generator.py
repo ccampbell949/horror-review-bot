@@ -15,7 +15,7 @@ class ReviewGenerator:
 
     def generate(self, title, overview):
         prompt = (
-            f"Write a short, casual review of the horror movie '{title}' that sounds like a real person posting on social media. Keep the tone spooky but natural. Don't mention when you watched the film. No text formatting like bold, italics, or caps. Use only 1 or 2 relevant emojis. Include relevant and trending horror-related hashtags at the end. Don't be dramatic or poetic. Just share a clear, chill opinion.\n\n"
+            f"Write a short, casual review of the horror movie '{title}' that sounds like a real person posting on social media. Keep the tone spooky but natural and down to earth. Don't mention when you watched the film. No text formatting like bold, italics, or caps. Use only 1 or 2 relevant emojis. Include relevant and trending horror-related hashtags at the end. Don't be dramatic or poetic. Just share a clear, chill opinion.\n\n"
             f"Here's the movie overview for context:\n{overview}"
 
         )

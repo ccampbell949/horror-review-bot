@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\config",
-    "\\tmdb"
+    "\\gui",
+    "\\horrorbot"
   ],
-  "SelectedNode": "\\horrorbot",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
